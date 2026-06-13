@@ -1,0 +1,55 @@
+{
+  "name": "fullstack-nextjs-agent",
+  "version": "0.1.0",
+  "description": "Implementing AI Agent Based on Next.js",
+  "private": true,
+  "scripts": {
+    "prepare": "husky || true",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "format": "prettier --write \"**/*.{mjs,ts,tsx,css,html,json}\"",
+    "lint-staged": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caigh1012/fullstack-nextjs-agent.git"
+  },
+  "keywords": [
+    "nextjs",
+    "ai-agent"
+  ],
+  "bugs": {
+    "url": "https://github.com/caigh1012/fullstack-nextjs-agent/issues"
+  },
+  "homepage": "https://github.com/caigh1012/fullstack-nextjs-agent#readme",
+  "author": "caigh1012",
+  "license": "MIT",
+  "packageManager": "pnpm@10.9.0",
+  "dependencies": {
+    "next": "16.2.9",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.0.2",
+    "@commitlint/config-conventional": "^21.0.2",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.9",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.7",
+    "prettier": "^3.8.4",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{mjs,js,jsx,ts,tsx,css,html,json}": "npm run format",
+    "*.{mjs,js,jsx,ts,tsx}": "npx eslint"
+  }
+}
