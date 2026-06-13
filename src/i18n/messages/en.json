@@ -1,0 +1,9 @@
+{
+  "HomePage": {
+    "title": "Hello World",
+    "toggleTheme": "Toggle theme",
+    "language": "Language",
+    "currentLocale": "Current locale: {locale}",
+    "cta": "Click me"
+  }
+}

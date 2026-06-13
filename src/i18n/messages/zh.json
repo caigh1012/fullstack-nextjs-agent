@@ -1,0 +1,9 @@
+{
+  "HomePage": {
+    "title": "你好，世界",
+    "toggleTheme": "切换主题",
+    "language": "语言",
+    "currentLocale": "当前语言：{locale}",
+    "cta": "点我"
+  }
+}
