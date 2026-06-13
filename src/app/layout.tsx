@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Noto_Sans, Inter } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import './globals.css';
 
 const interHeading = Inter({ subsets: ['latin'], variable: '--font-heading' });
@@ -30,8 +31,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn('h-full', 'antialiased', geistSans.variable, geistMono.variable, 'font-sans', notoSans.variable, interHeading.variable)}>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
