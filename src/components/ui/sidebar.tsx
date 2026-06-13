@@ -12,7 +12,7 @@ import { Separator } from '@/components/ui/separator';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { PanelLeftIcon } from 'lucide-react';
+import { ChevronLeft, ChevronRight, PanelLeftIcon } from 'lucide-react';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -229,21 +229,24 @@ function Sidebar({
 }
 
 function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<typeof Button>) {
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, state, isMobile, openMobile } = useSidebar();
+  const expanded = isMobile ? openMobile : state === 'expanded';
 
   return (
     <Button
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
+      data-state={expanded ? 'expanded' : 'collapsed'}
       variant="ghost"
       size="icon-sm"
-      className={cn(className)}
+      className={cn('relative', className)}
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();
       }}
       {...props}>
-      <PanelLeftIcon />
+      <PanelLeftIcon className="size-4" />
+      {expanded ? <ChevronLeft className="absolute right-1.5 size-3" /> : <ChevronRight className="absolute right-1.5 size-3" />}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );

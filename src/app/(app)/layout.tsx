@@ -72,7 +72,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             <Button
               type="button"
-              variant="outline"
+              variant="ghost"
               size="icon"
               aria-label="切换主题"
               onClick={() => setTheme(isDark ? 'light' : 'dark')}
@@ -83,7 +83,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             <Button
               asChild
-              variant="outline"
+              variant="ghost"
               size="icon"
               aria-label="GitHub">
               <a
