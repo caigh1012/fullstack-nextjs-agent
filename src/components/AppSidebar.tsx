@@ -1,7 +1,8 @@
 'use client';
 
-import * as React from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import {
   Sidebar,
   SidebarContent,
@@ -40,12 +41,13 @@ const MOCK_SESSIONS: Session[] = Array.from({ length: 30 }, (_, index) => {
 });
 
 export function AppSidebar() {
+  const router = useRouter();
   const { state, isMobile } = useSidebar();
-  const [searchValue, setSearchValue] = React.useState('');
-  const [sessions, setSessions] = React.useState<Session[]>(MOCK_SESSIONS);
-  const [activeSessionId, setActiveSessionId] = React.useState<string>(MOCK_SESSIONS[0]?.id ?? '');
+  const [searchValue, setSearchValue] = useState('');
+  const [sessions, setSessions] = useState<Session[]>(MOCK_SESSIONS);
+  const [activeSessionId, setActiveSessionId] = useState<string>(MOCK_SESSIONS[0]?.id ?? '');
 
-  const filteredSessions = React.useMemo(() => {
+  const filteredSessions = useMemo(() => {
     const keyword = searchValue.trim().toLowerCase();
     if (!keyword) return sessions;
     return sessions.filter((s) => {
@@ -55,7 +57,7 @@ export function AppSidebar() {
     });
   }, [searchValue, sessions]);
 
-  const handleDeleteSession = React.useCallback((id: string) => {
+  const handleDeleteSession = useCallback((id: string) => {
     setSessions((prev) => {
       const nextSessions = prev.filter((s) => s.id !== id);
       setActiveSessionId((prevActiveId) => {
@@ -65,6 +67,13 @@ export function AppSidebar() {
       return nextSessions;
     });
   }, []);
+
+  const handleClickSession = useCallback(
+    (id: string) => {
+      router.push(`/thread/${id}`);
+    },
+    [router],
+  );
 
   return (
     <Sidebar>
@@ -107,7 +116,7 @@ export function AppSidebar() {
                     <SidebarMenuButton
                       size="lg"
                       isActive={session.id === activeSessionId}
-                      onClick={() => setActiveSessionId(session.id)}
+                      onClick={() => handleClickSession(session.id)}
                       className="h-auto items-start py-2">
                       <div className="flex min-w-0 flex-1 flex-col">
                         <div className="truncate leading-5 font-medium">{session.title}</div>
